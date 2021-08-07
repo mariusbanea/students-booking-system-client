@@ -1,7 +1,7 @@
 const fetch = require("cross-fetch");
 
 const API_BASE_URL =
-  process.env.REACT_APP_API_BASE_URL || "http://localhost:5000";
+    process.env.REACT_APP_API_BASE_URL || "http://localhost:5000";
 
 /**
  * Defines the default headers for these functions to work with `json-server`
@@ -24,72 +24,72 @@ const headers = { "Content-Type": "application/json" };
  *  If the response is not in the 200 - 399 range the promise is rejected.
  */
 async function fetchJson(url, options, onCancel) {
-  try {
-    const response = await fetch(url, options);
+    try {
+        const response = await fetch(url, options);
 
-    if (response.status === 204) {
-      return null;
-    }
+        if (response.status === 204) {
+            return null;
+        }
 
-    const payload = await response.json();
+        const payload = await response.json();
 
-    if (payload.error) {
-      return Promise.reject({ message: payload.error });
+        if (payload.error) {
+            return Promise.reject({ message: payload.error });
+        }
+        return payload.data;
+    } catch (error) {
+        if (error.name !== "AbortError") {
+            console.error(error.stack);
+            throw error;
+        }
+        return Promise.resolve(onCancel);
     }
-    return payload.data;
-  } catch (error) {
-    if (error.name !== "AbortError") {
-      console.error(error.stack);
-      throw error;
-    }
-    return Promise.resolve(onCancel);
-  }
 }
 
 /**
- * Creates a new reservation
- * @returns {Promise<[reservation]>}
- *  a promise that resolves to the newly created reservation.
+ * Creates a new student
+ * @returns {Promise<[student]>}
+ *  a promise that resolves to the newly created student.
  */
-async function createReservation(reservation, signal) {
-  const url = `${API_BASE_URL}/reservations`;
-  const options = {
-    method: "POST",
-    headers,
-    body: JSON.stringify({ data: reservation }),
-    signal,
-  };
-  return await fetchJson(url, options, reservation);
+async function createStudent(student, signal) {
+    const url = `${API_BASE_URL}/students`;
+    const options = {
+        method: "POST",
+        headers,
+        body: JSON.stringify({ data: student }),
+        signal,
+    };
+    return await fetchJson(url, options, student);
 }
 
 /**
- * Creates a new table
- * @returns {Promise<[table]>}
- *  a promise that resolves to the newly created table.
+ * Creates a new course
+ * @returns {Promise<[course]>}
+ *  a promise that resolves to the newly created course.
  */
-async function createTable(table, signal) {
-  const url = `${API_BASE_URL}/tables`;
-  const options = {
-    method: "POST",
-    headers,
-    body: JSON.stringify({ data: table }),
-    signal,
-  };
-  return await fetchJson(url, options, table);
+async function createCourse(course, signal) {
+    const url = `${API_BASE_URL}/courses`;
+    const options = {
+        method: "POST",
+        headers,
+        body: JSON.stringify({ data: course }),
+        signal,
+    };
+    return await fetchJson(url, options, course);
 }
 
-async function seatReservation(reservation_id, table_id) {
-  const url = `${API_BASE_URL}/tables/${table_id}/seat`;
-  const options = {
-    method: "PUT",
-    body: JSON.stringify({ data: { reservation_id } }),
-    headers,
-  };
-  return await fetchJson(url, options, {});
+async function seatStudent(student_id, course_id) {
+    const url = `${API_BASE_URL}/courses/${course_id}/seat`;
+    const options = {
+        method: "PUT",
+        body: JSON.stringify({ data: { student_id } }),
+        headers,
+    };
+    return await fetchJson(url, options, {});
 }
 
 module.exports = {
-  createReservation,
-  createTable,
-  seatReservation,
+    createStudent,
+    createCourse,
+    seatStudent,
 };

@@ -1,14 +1,13 @@
 {
-  "name": "starter-restaurant-reservation-front-end",
-  "version": "1.0.0",
-  "description": "Starter code for restaurant reservation frontend",
-  "main": "src/index.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Thinkful-Ed/starter-restaurant-reservation",
-    "directory": "/front-end"
-  },
-  "private": true,
+    "name": "mentoring-student-system-front-end",
+    "version": "3.1.0",
+    "description": "Mentoring student system frontend",
+    "main": "src/index.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/mariusbanea/students-booking-system-client"
+    },
+    "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
@@ -35,8 +34,8 @@
     "test:7": "run-p -l -r test:start:* \"test:e2e:run -- us-07\"",
     "test:8": "run-p -l -r test:start:* \"test:e2e:run -- us-08\"",
     "test:e2e": "run-p -l -r test:start:* test:e2e:run",
-    "test:e2e:run": "wait-on http://localhost:5000/reservations?date=2020-01-01 && jest --detectOpenHandles --forceExit --config ./e2e/jest.config.js",
-    "test:start:backend": "npm run test:start --prefix ./../back-end",
+    "test:e2e:run": "wait-on http://localhost:5000/students?date=2020-01-01 && jest --detectOpenHandles --forceExit --config ./e2e/jest.config.js",
+    "test:start:backend": "npm run test:start --prefix ./../students-booking-system-server",
     "test:start:frontend": "npx cross-env BROWSER=none NODE_ENV=test react-scripts start",
     "test:unit": "react-scripts test"
   },
