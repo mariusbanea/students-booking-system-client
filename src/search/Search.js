@@ -47,7 +47,7 @@ export default function Search() {
             <form>
                 <ErrorAlert error={error} />
 
-                <label className="form-label" htmlFor="mobile_number">Enter a customer's phone number:</label>
+                <label className="form-label" htmlFor="mobile_number">Enter a student's phone number:</label>
                 <input
                     className="form-control"
                     name="mobile_number"
