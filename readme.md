@@ -1,6 +1,6 @@
 # Student Mentoring System
 
-> The software is used only by restaurant personnel when a customer calls to request a student.
+> The software is used only by school personnel when a customer calls to request a student.
 > At this point, the customers will not access the system online.
 
 There are no user stories for deployment: it is expected that you will deploy the application to production after you finish a user story.
@@ -151,9 +151,9 @@ Although the user stories do not say anything about deployment, you should consi
 
 ### US-01 Create and list students
 
-As a restaurant manager<br/>
+As a school manager<br/>
 I want to create a new student when a customer calls<br/>
-so that I know how many customers will arrive at the restaurant on a given day.
+so that I know how many customers will arrive at the school on a given day.
 
 #### Acceptance Criteria
 
@@ -219,14 +219,14 @@ module.exports = {
 
 ### US-02 Create student on a future, working date
 
-As a restaurant manager<br/>
+As a school manager<br/>
 I only want to allow students to be created on a day when we are open<br/>
 so that users do not accidentally create a student for days when we are closed.<br/>
 
 #### Acceptance criteria
 
 1. The `/students/new` page will display an error message with `className="alert alert-danger"` if any of the following constraints are violated:
-   - The student date is a Tuesday as the restaurant is closed on Tuesdays.
+   - The student date is a Tuesday as the school is closed on Tuesdays.
    - The student date is in the past. Only future students are allowed.
 1. The `/students` API will have the same validations as above and will return 400, along with an informative error message, when a validation error happens.
 
@@ -243,7 +243,7 @@ so that users do not accidentally create a student for days when we are closed.<
 
 ### US-03 Create student within eligible timeframe
 
-As a restaurant manager<br/>
+As a school manager<br/>
 I only want to allow students to be created during business hours, up to 60 minutes before closing<br/>
 so that users do not accidentally create a student for a time we cannot accommodate.
 
@@ -251,7 +251,7 @@ so that users do not accidentally create a student for a time we cannot accommod
 
 1. The `/students/new` page will display an error message with `className="alert alert-danger"`, if any of the following additional constraints are violated:
    - The student time is before 10:30 AM.
-   - The student time is after 9:30 PM, because the restaurant closes at 10:30 PM and the customer needs to have time to enjoy their meal.
+   - The student time is after 9:30 PM, because the school closes at 10:30 PM and the customer needs to have time to enjoy their meal.
    - The student date and time combination is in the past. Only future students are allowed. E.g., if it is noon, only allow students starting _after_ noon today.
 1. The `/students` API will have the same validations as above and will return 400, along with an informative error message, when a validation error happens.
 
@@ -259,8 +259,8 @@ so that users do not accidentally create a student for a time we cannot accommod
 
 ### US-04 Seat student
 
-As a restaurant manager, <br/>
-When a customer with an existing student arrives at the restaurant<br/>
+As a school manager, <br/>
+When a customer with an existing student arrives at the school<br/>
 I want to seat (assign) their student to a specific course<br/>
 so that I know which courses are occupied and free.
 
@@ -306,7 +306,7 @@ so that I know which courses are occupied and free.
 
 ### US-05 Finish an occupied course
 
-As a restaurant manager<br/>
+As a school manager<br/>
 I want to free up an occupied course when the guests leave<br/>
 so that I can seat new guests at that course.<br/>
 
@@ -322,7 +322,7 @@ so that I can seat new guests at that course.<br/>
 
 ### US-06 Reservation Status
 
-As a restaurant manager<br/>
+As a school manager<br/>
 I want a student to have a status of either booked, seated, or finished<br/>
 so that I can see which student parties are seated, and finished students are hidden from the dashboard.
 
@@ -342,7 +342,7 @@ so that I can see which student parties are seated, and finished students are hi
 
 ### US-07 Search for a student by phone number
 
-As a restaurant manager<br/>
+As a school manager<br/>
 I want to search for a student by phone number (partial or complete)<br/>
 so that I can quickly access a customer's student when they call about their student.<br/>
 
@@ -374,7 +374,7 @@ so that I can quickly access a customer's student when they call about their stu
 
 ### US-08 Change an existing student
 
-As a restaurant manager<br/>
+As a school manager<br/>
 I want to be able to modify a student if a customer calls to change or cancel their student<br/>
 so that students are accurate and current.
 
